@@ -116,17 +116,15 @@ Route modules are starter scaffolds; they do not imply that every business opera
 
 Let the primary axes be `A = {technical, soft, behavioral, interest, educational}`. For each axis `a`, company-defined axis weight `W_a` is a percentage, and child item `i` has within-axis weight `w_{a,i}`. Configuration is valid only when:
 
-$$\sum_{a \in A} W_a = 100 \qquad	ext{and}\qquad orall a,\;\sum_i w_{a,i}=100$$
+$$\sum_{a \in A} W_a = 100 \qquad\text{and}\qquad \forall a,\;\sum_i w_{a,i}=100$$
 
 A student match score for an item is normalized to `[0, 100]`. The axis score is:
 
-$$S_a = \sum_i \left(rac{w_{a,i}}{100}
-ight) s_{a,i}$$
+$$S_a = \sum_i \left(\frac{w_{a,i}}{100}\right) s_{a,i}$$
 
 The opportunity score is:
 
-$$S = \sum_a \left(rac{W_a}{100}
-ight) S_a$$
+$$S = \sum_a \left(\frac{W_a}{100}\right) S_a$$
 
 Only comparable, eligible items participate. Missing student evidence is handled by an explicit versioned rule (for example, exclude/re-normalize or score as zero); do not silently choose a policy in code. The starter calculator rejects missing required item scores rather than inventing a policy.
 
