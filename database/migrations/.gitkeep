@@ -1,0 +1,1 @@
+# Responsibility: keep the migrations directory in Git until the first migration is added.
