@@ -9,7 +9,7 @@ const sum = (values: number[]) => values.reduce((total, value) => total + value,
 function validPercent(n: number): boolean { return Number.isFinite(n) && n >= 0 && n <= 100 && Math.round(n * 100) / 100 === n; }
 const sumBasisPoints = (values: number[]) => values.reduce((total, value) => total + Math.round(value * 100), 0);
 export function validateNestedWeights(config: NestedWeights): void {
-  if (!config.axes.length) throw new InvalidWeightsError("At least one axis is required");
+  if (config.axes.length !== MATCH_AXES.length) throw new InvalidWeightsError("All five primary axes must be configured exactly once");
   const seen = new Set<string>();
   for (const row of config.axes) {
     if (!(MATCH_AXES as readonly string[]).includes(row.axis)) throw new InvalidWeightsError(`Unknown axis: ${row.axis}`);

@@ -11,6 +11,7 @@ const config: NestedWeights = { axes: [
 describe("nestedMatchCalculator", () => {
   it("accepts primary and per-axis child weights totaling 100", () => expect(() => validateNestedWeights(config)).not.toThrow());
   it("rejects a primary total other than 100", () => expect(() => validateNestedWeights({ ...config, axes: config.axes.map((a, i) => i === 0 ? { ...a, weight: 59 } : a) })).toThrow(InvalidWeightsError));
+  it("rejects a missing primary axis", () => expect(() => validateNestedWeights({ axes: config.axes.slice(0, 4) })).toThrow(InvalidWeightsError));
   it("calculates a deterministic weighted score", () => expect(calculateNestedMatchScore(config, [
     { axis: "technical", itemId: "sql", score: 100 }, { axis: "technical", itemId: "api", score: 0 },
     { axis: "soft", itemId: "communication", score: 100 }, { axis: "behavioral", itemId: "consistency", score: 100 },

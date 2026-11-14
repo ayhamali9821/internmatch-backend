@@ -83,7 +83,7 @@ Files inside `src/engine/` must remain 100% pure TypeScript functions with **zer
 
 ### Rule 2 — Strict 100% Nested Weight Validation
 
-`POST /company/opportunities` must reject any payload with **400 Bad Request** if primary axis weights do not sum to exactly `100`, or if the sub-item weights inside **any** axis do not sum to exactly `100`. Validate all axes, including axes with missing/empty sub-items. Avoid floating-point drift: represent percentages as integer basis points (for example, `25.50% = 2550`) or use a decimal-safe representation at API boundaries. The starter contract uses percentage values and the pure validator; production persistence should normalize safely.
+`POST /company/opportunities` must reject any payload with **400 Bad Request** if primary axis weights do not sum to exactly `100`, or if the sub-item weights inside **any** axis do not sum to exactly `100`. Require all five primary axes to be represented exactly once, including axes assigned a zero primary weight; reject any axis with missing/empty sub-items. Avoid floating-point drift: represent percentages as integer basis points (for example, `25.50% = 2550`) or use a decimal-safe representation at API boundaries. The starter contract uses percentage values and the pure validator; production persistence should normalize safely.
 
 ### Rule 3 — Atomic Post-Interview Calibration
 
